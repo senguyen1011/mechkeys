@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Mechanical Keyboards</h1>
+  
+  <div class="row g-2 mb-4">
+    <div class="col-8">
+      <input #searchBox type="text" class="form-control" placeholder="Search" 
+        aria-label="Search" (input)="searchName(searchBox.value)"
+      />
+    </div>
+    <div class="col">
+      <select #inputForm class="form-select" aria-label="Form Factor"
+        (change)="searchForm(inputForm.value)"
+      >
+        <option selected>All Form Factors</option>
+        <option value="Full Size">Full Sized</option>
+        <option value="TKL">TKL</option>
+        <option value="1800">1800</option>
+        <option value="75">75%</option>
+        <option value="65">65%</option>
+        <option value="60">60%</option>
+      </select>
+    </div>
+  </div>
+  <div class="row row-cols-4">
+    <div *ngFor="let mech of mechs" class="col mb-4">
+      <a class="text-decoration-none" routerLink="/detail/{{mech.name}}">
+        <div class="card card-link">
+          <img *ngIf="mech.images" [src]="mech.images[0]" class="d-block w-100">
+          <div class="card-body">
+            <h6 class="card-subtitle text-right text-second">{{mech.form}}</h6>
+            <h5 class="card-title text-right">
+              <span class="mr-2">{{mech.name}}</span>
+              <span class="h6">${{mech.price}}</span>
+            </h5>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

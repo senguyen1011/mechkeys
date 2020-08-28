@@ -1,0 +1,15 @@
+
+  <input #searchBox id="search-box" class="form-control" placeholder="Search"
+    (input)="search(searchBox.value)"  list="mechList"
+  />
+
+  <datalist id="mechList">
+    <option *ngFor="let mech of mechs$ | async" value={{mech.name}>
+  </datalist>
+  <!-- <ul class="search-result">
+    <li *ngFor="let mech of mechs$ | async" >
+      <a routerLink="/detail/{{mech.name}}">
+        {{mech.name}}
+      </a>
+    </li>
+  </ul> -->

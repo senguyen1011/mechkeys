@@ -1,0 +1,158 @@
+<div *ngIf="mech" class="container">
+  <div class="row mt-2">
+    <div class="col-7">
+      <div id="productCarousel" class="carousel slide card-img-top mt-2" 
+          data-ride="carousel"
+        >
+          <ol class="carousel-indicators">
+            <li *ngFor="let img of mech.images; index as i; first as isFirst" 
+              data-target="#productCarousel" data-slide-to="{{i}}" 
+              [class.active]="isFirst"
+            >
+            </li>
+          </ol>
+          <div class="carousel-inner">
+            <div *ngFor="let img of mech.images; index as i; first as isFirst" 
+              class="carousel-item" [class.active]="isFirst"
+            >
+              <img [src]="img" class="d-block w-100">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#productCarousel" role="button" 
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#productCarousel" role="button" 
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+    </div>
+
+    <div class="col-5">
+      <h2 class="d-flex align-items-center">
+        <span class="font-weight-bold mr-2">
+          {{mech.name}}
+        </span>
+        <span class="h3 text-second">
+          {{mech.form}}
+        </span>
+        <a class="btn btn-lg btn-outline-custom ml-auto 
+            d-flex align-items-center"
+          href="{{mech.url}}" target="_blank"
+        >
+          <span class="mr-2">${{mech.price}}</span>
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart" 
+            fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+          >
+            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg>
+        </a>
+      </h2>
+
+      <hr />
+      <p class="text-second">
+        {{mech.description}}
+      </p>
+
+      <div class="card">
+        <div class="card-header mt-2">
+          <h5 class="d-flex align-items-center">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" 
+              class="bi bi-exclamation-circle mr-2" fill="currentColor" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            </svg>
+            <span>Keyboard Details</span>
+          </h5>
+        </div>
+        <div class="card-body mt-0 pt-0">
+          <hr class="mt-0"/>
+          <dl class="row mb-0">
+            <dt class="col-3">Keys</dt>
+            <dd class="col-9">{{mech.keys}}</dd>
+          
+            <dt class="col-3">Hotswap</dt>
+            <dd class="col-9 text-capitalize">{{mech.hotswap}}</dd>
+
+            <dt class="col-3">Firmware</dt>
+            <dd class="col-9">{{mech.firmware}}</dd>
+    
+            <dt class="col-3">Connector</dt>
+            <dd class="col-9">{{mech.connector}}</dd>
+    
+            <dt class="col-3">Weight</dt>
+            <dd class="col-9">{{mech.weight}}g</dd>
+    
+            <dt class="col-3">Dimensions</dt>
+            <dd class="col-9">
+              {{mech.dimensions.length}}cm x {{mech.dimensions.width}}cm x 
+              {{mech.dimensions.height}}cm
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="d-flex align-items-center" id="collapseButton" 
+            type="button" data-toggle="collapse" data-target="#collapseOptions" 
+            aria-expanded="true" aria-controls="collapseOptions" 
+            (click)="toggleCollapse()"
+          >
+            <svg width="1em" height="1em" viewBox="0 0 16 16" 
+              class="bi bi-gear mr-2" fill="currentColor" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
+              <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
+            </svg>
+            <span>Customization Options</span>
+            <svg *ngIf="collapse" width="1em" height="1em" viewBox="0 0 16 16"
+              class="bi bi-chevron-down ml-auto" fill="currentColor" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+            <svg *ngIf="!collapse" width="1em" height="1em" viewBox="0 0 16 16" 
+              class="bi bi-chevron-up ml-auto" fill="currentColor" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+            </svg>
+          </h5>
+        </div>
+        <div id="collapseOptions" class="collapse card-body mt-0 pt-0" 
+          aria-labelledby="collapseButton"
+        >
+          <hr class="mt-0" />
+          <dl class="row mb-0">
+            <dt class="col-3">Colors</dt>
+            <dd class="col-9">
+              <ul class="list-unstyled">
+                <li *ngFor="let color of mech.colors">
+                  {{color}}
+                </li>
+              </ul>
+            </dd>
+
+            <dt class="col-3">Switches</dt>
+            <dd class="col-9">
+              <ul class="list-unstyled">
+                <li *ngFor="let switch of mech.switches">
+                  {{switch}}
+                </li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

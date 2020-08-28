@@ -1,0 +1,34 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-main">
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" routerLink="/mech" 
+      (click)="setCurrent('mech')"
+    >
+      MechKeys
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+      aria-expanded="false" aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="current=='mech'" 
+            routerLink="/mech" (click)="setCurrent('mech')"
+          >
+            Mechs
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="current=='switch'" 
+            routerLink="/switch" (click)="setCurrent('switch')"
+          >
+            Switches
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
